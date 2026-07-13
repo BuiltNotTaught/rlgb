@@ -1,0 +1,37 @@
+# rlgb — CC BY-NC-ND 4.0 license. Built by BuiltNotTaught.
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rlgb"
+version = "1.0.0"
+description = "From-scratch headless Game Boy (DMG) emulator built for RL training"
+readme = "README.md"
+license = {text = "CC-BY-NC-ND-4.0"}
+authors = [{ name = "BuiltNotTaught" }]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "tomli; python_version < '3.11'",
+]
+keywords = ["gameboy", "emulator", "reinforcement-learning", "gymnasium", "rl"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: C",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: System :: Emulators",
+]
+
+[project.optional-dependencies]
+image = ["pillow"]
+gym = ["gymnasium"]
+sb3 = ["gymnasium", "stable-baselines3"]
+
+[tool.setuptools]
+packages = ["rlgb"]
+
+[tool.setuptools.package-data]
+rlgb = ["libgb.so"]

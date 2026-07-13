@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rlgb-vec"
+version = "0.1.0"
+description = "Async GPU VecEnv bridge between the vendored rlgb (DMG) emulator and SB3/RecurrentPPO"
+requires-python = ">=3.10"
+# Core dep only — the binding/shm/RAM layer runs barebone with just numpy.
+dependencies = ["numpy>=1.24"]
+
+[project.optional-dependencies]
+# Full async-GPU training stack (Docker image installs this).
+train = [
+    "torch>=2.0",
+    "stable-baselines3>=2.0",
+    "sb3-contrib>=2.0",
+    "opencv-python-headless>=4.7",
+    "gymnasium>=0.29",
+]
+dev = ["pytest", "pytest-timeout"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["rlgb_vec*"]

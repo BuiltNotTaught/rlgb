@@ -1,0 +1,37 @@
+# rlgb configuration — every knob lives here, nothing is hardcoded.
+# CC BY-NC-ND 4.0 license. Built by BuiltNotTaught.
+
+[rom]
+path = "roms/pokemon_red.gb"
+
+[emulation]
+render = true          # false = skip all pixel work (fastest headless mode)
+frame_skip = 0         # extra frames advanced per tick()
+sound = false          # APU is a register stub; reserved for the future
+
+[video]
+# shade index 0..3 -> RGB (default: classic DMG green)
+palette = [[224, 248, 208], [136, 192, 112], [52, 104, 86], [8, 24, 32]]
+grayscale_levels = [255, 170, 85, 0]
+
+[input]
+hold_frames = 5        # GameBoy.push(): frames the button is held
+release_frames = 1     # GameBoy.push(): settle frames after release
+
+[paths]
+lib = ""               # path to libgb.so; "" = the copy bundled in rlgb/
+states = "states"      # where save_state_file() writes by default
+
+[db]                   # rlgb.EmuDB (sqlite: states, runs, episodes, metrics)
+path = ""              # sqlite file; "" = not used
+compress = 6           # zlib level for state blobs, 0-9
+
+[env]                  # rlgb.GameBoyEnv (gym-style RL wrapper)
+actions = ["", "a", "b", "start", "select", "up", "down", "left", "right"]
+obs = "shades"         # shades | gray | rgb
+frames_per_action = 24
+press_frames = 8
+reward = ""            # plug-in: "my_pkg.rewards:fn"  (fn(gb) -> float)
+done = ""              # plug-in: "my_pkg.rewards:done" (fn(gb) -> bool)
+info = ""              # plug-in: "my_pkg.rewards:info" (fn(gb) -> dict)
+max_steps = 0          # 0 = unlimited
