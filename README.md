@@ -160,7 +160,7 @@ runtime (none are baked in).
 
 ## License
 
-CC BY-NC-ND 4.0 license. See `LICENSE`. No ROM files are included — provide your own or use
+CC BY-NC-ND 4.0. See `LICENSE`. Credit required, non-commercial use only, no derivatives. No ROM files are included — provide your own or use
 emulation-legal test ROMs.
 
 ## Contributing
